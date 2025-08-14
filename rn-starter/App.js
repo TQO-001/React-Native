@@ -14,24 +14,11 @@ export default function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <View style={styles.container}>
-      <Greeting name="Thulani" />
-      <Text style={styles.title}>Count: {count}</Text>
-
-      <Button 
-        title="Increment" 
-        onPress={() => {
-          setCount(c => c + 1)
-        }}/>
-
-      <Greeting name="Dude" mood="focused" />
-      <Button 
-        title="Reset"
-        onPress={() => {
-          setCount(0)
-        }}/>
-
-      <StatusBar style="auto" />
+    <View style={{ width: "100%", padding: 16 }}>
+      <View style={{ flexDirection: "row", gap: 8 }}>
+        <View style={{ flex: 1, height: 60, backgroundColor: "#ddd" }}></View>
+        <View style={{ flex: 2, height: 60, backgroundColor: "#bbb" }}></View>
+      </View>
     </View>
   );
 }
