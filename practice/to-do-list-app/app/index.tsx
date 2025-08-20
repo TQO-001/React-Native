@@ -1,57 +1,91 @@
-import Heading from "@/components/Heading";
-import TaskButton from "@/components/Button";
-import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  ScrollView
+} from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <View>
-        <Heading text="To-Do List App" size="large" />
-        <Text>Welcome to the To-Do List App!</Text>
-      </View>
+import Heading from "@/components/Heading";
+import Task from "@/components/Task";
+import CustomButton from "@/components/CustomButton"; // Check spelling of 'CustomButtom'
 
-      <View style={styles.inputContainer}>
-        <TextInput 
+export default function HomeScreen() {
+
+  const addTask = () => {
+    Alert.alert("Please enter a task");
+    return;
+  };
+
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <View>
+          <Heading
+            style={{ color: "#fff" }}
+            text="To-Do List App"
+            size="large"
+          />
+          <Text style={styles.text}>Welcome to the To-Do List App!</Text>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <TextInput
             style={styles.input}
             placeholder="Add a new task"
+            placeholderTextColor={"#888"}
           />
-          <TaskButton style={styles.button}/>
+          <CustomButton title="Add Task" onPress={addTask} />
         </View>
-    </View>
+
+        <ScrollView style={styles.taskContainer}>
+          <Text style={styles.text}>No Tasks Yet</Text>
+          <Task description={"lorem ipsum"}/>
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-    },
-    inputContainer: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: 15,
-      height: 50,
-      width: "100%",
-      maxWidth: "100%",
-      paddingHorizontal: 20,
-      backgroundColor: "red",
-    },
-    input: {
-      flex: 3,
-      height: 40,
-      width: "100%",
-      borderColor: "gray",
-      borderWidth: 1,
-      borderRadius: 8,
-      paddingHorizontal: 10,
-    },
-    button: {
-      flex: 1,
-      width: "100%",
-      height: 40,
-    }
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#333",
+    paddingHorizontal: 20,
+    paddingTop: 20,
+  },
+  text: {
+    color: "#fff",
+    fontSize: 18,
+    marginVertical: 10,
+    textAlign: "center",
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginVertical: 20,
+    width: "100%",
+  },
+  input: {
+    flex: 3,
+    color: "#fff",
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+  },
+  taskContainer: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "#444",
+    borderRadius: 8,
+    padding: 10,
+  },
 });

@@ -1,25 +1,28 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function Heading({text = "Heading", size = 'medium'}) {
-    let prop;
+export default function Heading({ text="Heading", size='medium', style={} }) {
+    let sizeStyle;
     switch (size) {
         case 'large':
-            prop = styles.large;
+            sizeStyle = styles.large;
             break;
         case 'medium':
-            prop = styles.medium;
+            sizeStyle = styles.medium;
             break;
         case 'small':
-            prop = styles.small;
+            sizeStyle = styles.small;
             break;
         default:
-            prop = styles.text; 
+            sizeStyle = styles.text; 
             break;
         }
     return (
         <View>
-        <Text style={[prop, {marginVertical: 15}]}>{text}</Text>
+        <Text style={[ sizeStyle, { marginVertical: 15, fontWeight: "bold" }, style ]}>
+            {text}
+        </Text>
+
         </View>
     )
 }
@@ -27,15 +30,12 @@ export default function Heading({text = "Heading", size = 'medium'}) {
 const styles = StyleSheet.create({
     large: {
         fontSize: 32,
-        fontWeight: 'bold',
     },
     medium: {
         fontSize: 24,
-        fontWeight: 'bold',
     },
     small: {
         fontSize: 16,
-        fontWeight: 'bold',
     },
     text: {
         fontSize: 14,
